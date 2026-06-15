@@ -1196,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
       i++;
     }
     
-    if (largestSize > 10240) { // Must be at least 10KB
+    if (largestSize > 100) { // Must be at least 100 bytes
       return new Blob([u8.subarray(largestStart, largestEnd)], { type: 'image/jpeg' });
     }
     return null;

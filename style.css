@@ -600,6 +600,96 @@ body {
   }
 }
 
+/* Magic Wand Logo Spin */
+.logo-icon:hover i {
+  animation: magicSpin 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes magicSpin {
+  0% { transform: rotate(0) scale(1); }
+  50% { transform: rotate(180deg) scale(1.25); filter: drop-shadow(0 0 8px var(--primary-color)); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Button Shine Effect */
+.btn-primary, .btn-success {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after, .btn-success::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(30deg);
+  transition: none;
+  pointer-events: none;
+}
+.btn-primary:hover::after, .btn-success:hover::after {
+  left: 150%;
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pulse Glow Effect on active Dragover Dropzone */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); border-color: var(--primary-color); }
+}
+.upload-zone.dragover {
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* Staggered Floating Wave for Format Badges */
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.format-badge {
+  animation: floatBadge 4s ease-in-out infinite;
+}
+.row-cols-lg-10 > :nth-child(1) .format-badge { animation-delay: 0s; }
+.row-cols-lg-10 > :nth-child(2) .format-badge { animation-delay: 0.3s; }
+.row-cols-lg-10 > :nth-child(3) .format-badge { animation-delay: 0.6s; }
+.row-cols-lg-10 > :nth-child(4) .format-badge { animation-delay: 0.9s; }
+.row-cols-lg-10 > :nth-child(5) .format-badge { animation-delay: 1.2s; }
+.row-cols-lg-10 > :nth-child(6) .format-badge { animation-delay: 1.5s; }
+.row-cols-lg-10 > :nth-child(7) .format-badge { animation-delay: 1.8s; }
+.row-cols-lg-10 > :nth-child(8) .format-badge { animation-delay: 2.1s; }
+.row-cols-lg-10 > :nth-child(9) .format-badge { animation-delay: 2.4s; }
+.row-cols-lg-10 > :nth-child(10) .format-badge { animation-delay: 2.7s; }
+
+/* Hero Dynamic Moving Gradient Background */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hero-section {
+  background: linear-gradient(-45deg, rgba(99, 102, 241, 0.04), rgba(168, 85, 247, 0.04), rgba(16, 185, 129, 0.02), rgba(99, 102, 241, 0.04)) !important;
+  background-size: 400% 400% !important;
+  animation: gradientBG 15s ease infinite !important;
+}
+
+/* FAQ Collapse Fade-in */
+.accordion-body {
+  animation: fadeIn 0.4s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Spin Icon for Converting Badge */
+.spin-icon {
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Extra utility sizes */
 .fs-7 {
   font-size: 0.825rem;

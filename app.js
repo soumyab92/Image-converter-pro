@@ -492,16 +492,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const dimensionsStr = item.width > 0 ? `${item.width} x ${item.height} px` : 'Loading...';
       
       let badgeClass = 'pending';
-      let statusText = 'Pending';
+      let statusText = `<i class="fa-solid fa-clock me-1"></i>Pending`;
       if (item.status === 'processing') {
         badgeClass = 'converting';
-        statusText = `Converting (${item.progress}%)`;
+        statusText = `<i class="fa-solid fa-arrows-rotate me-1 spin-icon"></i>Converting (${item.progress}%)`;
       } else if (item.status === 'success') {
         badgeClass = 'success';
-        statusText = 'Completed';
+        statusText = `<i class="fa-solid fa-circle-check me-1"></i>Completed`;
       } else if (item.status === 'error') {
         badgeClass = 'error';
-        statusText = 'Error';
+        statusText = `<i class="fa-solid fa-circle-xmark me-1"></i>Error`;
       }
 
       fileRow.innerHTML = `

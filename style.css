@@ -1,0 +1,609 @@
+/* ==========================================================================
+   Design System & Theme Variables
+   ========================================================================== */
+:root {
+  /* Font Family */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+
+  /* Colors (Light Theme) */
+  --bg-color: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --bg-light-section: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 40px -15px rgba(99, 102, 241, 0.1);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+}
+
+[data-bs-theme="dark"] {
+  /* Colors (Dark Theme) */
+  --bg-color: #0b0f19;
+  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
+  --bg-light-section: #111827;
+  --card-bg: #1e293b;
+  --card-border: rgba(51, 65, 85, 0.5);
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.25);
+  
+  /* Bootstrap Custom Dark Mode Overrides */
+  --bs-body-bg: var(--bg-color);
+  --bs-body-color: var(--text-main);
+}
+
+/* ==========================================================================
+   Global & Reset Styles
+   ========================================================================== */
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.Inter-font {
+  font-family: var(--font-sans);
+}
+
+.Outfit-font {
+  font-family: var(--font-heading);
+}
+
+.fw-extrabold {
+  font-weight: 800;
+}
+
+/* Typography Gradient */
+.text-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-primary-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Base sections background overrides */
+.bg-light-section {
+  background-color: var(--bg-light-section) !important;
+  transition: background-color 0.4s ease;
+}
+
+/* Custom Cards */
+.card-custom {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.settings-card {
+  background: rgba(99, 102, 241, 0.02);
+  border: 1px dashed rgba(99, 102, 241, 0.2);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+[data-bs-theme="dark"] .settings-card {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.shadow-sm-custom {
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3) !important;
+}
+
+/* ==========================================================================
+   Navigation Bar (Glassmorphic)
+   ========================================================================== */
+.navbar-custom {
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 0;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  z-index: 1030;
+}
+
+[data-bs-theme="dark"] .navbar-custom {
+  background: rgba(11, 15, 25, 0.85);
+}
+
+.navbar-custom .logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+}
+
+.navbar-custom .nav-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: var(--primary-color) !important;
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.btn-theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn-theme-toggle:hover {
+  transform: rotate(15deg) scale(1.05);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.badge-glow {
+  box-shadow: var(--shadow-glow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Upload Drag-and-Drop Zone
+   ========================================================================== */
+.upload-zone {
+  background: rgba(99, 102, 241, 0.02);
+  border: 2px dashed rgba(99, 102, 241, 0.3);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.upload-zone:hover {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: var(--primary-color);
+}
+
+.upload-zone.dragover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--primary-color);
+  transform: scale(0.99);
+  box-shadow: var(--shadow-glow);
+}
+
+.upload-icon-wrapper {
+  background: rgba(99, 102, 241, 0.08);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: transform 0.3s;
+}
+
+.upload-zone:hover .upload-icon-wrapper,
+.upload-zone.dragover .upload-icon-wrapper {
+  transform: scale(1.1);
+}
+
+/* Buttons custom overrides */
+.btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+  font-weight: 600;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-outline-custom {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--card-border);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-outline-custom:hover {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-check:checked + .btn-outline-custom {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================================================
+   File Queue List & Progress Components
+   ========================================================================== */
+.file-queue-container {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar */
+.file-queue-container::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.file-queue-container::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: var(--text-muted);
+  border-radius: 10px;
+}
+
+.file-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-md);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  animation: slideIn 0.3s ease-out;
+}
+.file-item:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.file-item-thumbnail {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #e2e8f0;
+}
+
+.file-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-item-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-item-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.file-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Conversion states indicators */
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.status-badge.pending {
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+}
+.status-badge.converting {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+.status-badge.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+.status-badge.error {
+  background-color: rgba(239, 68, 110, 0.1);
+  color: var(--danger-color);
+}
+
+/* Progress indicator inside queue files */
+.progress-bar-custom {
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--bg-light-section);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-bar-inner {
+  height: 100%;
+  width: 0%;
+  background: var(--primary-gradient);
+  transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   Visual Comparison Slider Modal Styling
+   ========================================================================== */
+.comparison-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 380px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.comparison-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #f1f5f9;
+  background-image: 
+    linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+    linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+[data-bs-theme="dark"] .comparison-image {
+  background-color: #0f172a;
+  background-image: 
+    linear-gradient(45deg, #1e293b 25%, transparent 25%),
+    linear-gradient(-45deg, #1e293b 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1e293b 75%),
+    linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+}
+
+.comparison-after-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.comparison-after-wrapper .after-image {
+  width: 600px; /* Must equal comparison-container max-width for correct alignment */
+  max-width: none;
+}
+
+.comparison-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #ffffff;
+  cursor: ew-resize;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   SaaS Features Section
+   ========================================================================== */
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.format-badge {
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.format-badge:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   FAQ Custom Accordion Styling
+   ========================================================================== */
+.accordion-custom .accordion-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--border-radius-md) !important;
+  overflow: hidden;
+}
+
+.accordion-custom .accordion-button {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  font-weight: 600;
+  box-shadow: none !important;
+}
+
+.accordion-custom .accordion-button:not(.collapsed) {
+  color: var(--primary-color);
+  background-color: rgba(99, 102, 241, 0.02);
+}
+
+.accordion-custom .accordion-button::after {
+  filter: invert(0.3);
+}
+
+[data-bs-theme="dark"] .accordion-custom .accordion-button::after {
+  filter: invert(0.8) hue-rotate(180deg);
+}
+
+/* ==========================================================================
+   Recent Conversions History Table
+   ========================================================================== */
+#historyTableContainer {
+  max-height: 350px;
+}
+
+.table {
+  color: var(--text-main) !important;
+}
+
+.table th {
+  font-weight: 600;
+  border-bottom: 2px solid var(--card-border) !important;
+  color: var(--text-secondary);
+}
+
+.table td {
+  border-bottom: 1px solid var(--card-border) !important;
+  font-size: 0.9rem;
+}
+
+/* Toast override for alerts */
+.toast {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  color: var(--text-main) !important;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Extra utility sizes */
+.fs-7 {
+  font-size: 0.825rem;
+}
+.fs-8 {
+  font-size: 0.725rem;
+}

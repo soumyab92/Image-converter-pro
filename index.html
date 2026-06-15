@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Converter Pro - Fast, Secure & Free Client-Side Image Conversion</title>
+  <meta name="description" content="Convert images instantly to WEBP, PNG, JPG, BMP, TIFF, SVG, ICO, AVIF. 100% client-side, secure, private, and free. No uploads to server required.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#hero">
+        <div class="logo-icon me-2">
+          <i class="fa-solid fa-wand-magic-sparkles text-primary fs-4"></i>
+        </div>
+        <span class="logo-text">ImageConverter<span class="text-primary-gradient">Pro</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#converter-section">Converter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#formats">Formats</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#faq">FAQ</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="btn btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light mode">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="hero" class="hero-section text-center py-5">
+    <div class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <span class="badge badge-glow bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-3">
+            <i class="fa-solid fa-shield-halved me-1"></i> 100% Secure Client-Side Conversion
+          </span>
+          <h1 class="display-4 fw-extrabold Outfit-font mb-3">
+            Convert Any Image Format <br><span class="text-gradient">Instantly & Privately</span>
+          </h1>
+          <p class="lead text-secondary mb-4 Inter-font">
+            Transform JPG, PNG, WEBP, SVG, BMP, TIFF, ICO, and AVIF with zero server uploads. Your data never leaves your device.
+          </p>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="#converter-section" class="btn btn-primary btn-lg px-4 py-3 shadow-sm-custom">
+              <i class="fa-solid fa-rocket me-2"></i>Start Converting
+            </a>
+            <a href="#features" class="btn btn-outline-secondary btn-lg px-4 py-3">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Converter Section -->
+  <section id="converter-section" class="pb-5">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        
+        <!-- Main Panel -->
+        <div class="col-xl-9 col-lg-10">
+          <div class="card card-custom p-4 p-md-5">
+            <div class="row g-4">
+              
+              <!-- Left Side: Dropzone & File List -->
+              <div class="col-lg-7">
+                <!-- Dropzone -->
+                <div class="upload-zone text-center p-5 mb-4" id="dropzone">
+                  <input type="file" id="fileInput" multiple accept="image/*,.tiff,.tif,.cr2,.cr3,.nef,.arw,.dng,.orf,.pef,.raf,.rw2,.raw" class="d-none">
+                  <div class="upload-icon-wrapper mb-3">
+                    <i class="fa-solid fa-cloud-arrow-up text-primary fs-1 bounce-animation"></i>
+                  </div>
+                  <h4 class="fw-bold mb-2">Drag and drop images here</h4>
+                  <p class="text-secondary small mb-4">Supports PNG, JPG, WEBP, BMP, GIF, TIFF, SVG, ICO, AVIF, RAW (CR2, NEF, ARW, DNG, etc.)</p>
+                  <button class="btn btn-primary px-4" onclick="document.getElementById('fileInput').click()">
+                    <i class="fa-solid fa-folder-open me-2"></i>Browse Files
+                  </button>
+                </div>
+
+                <!-- Active Queue Status -->
+                <div id="queueStatus" class="d-flex justify-content-between align-items-center mb-3 d-none">
+                  <span class="fw-semibold text-secondary" id="queueCount">0 files selected</span>
+                  <button class="btn btn-sm btn-outline-danger" id="clearAllBtn">
+                    <i class="fa-solid fa-trash-can me-1"></i>Clear All
+                  </button>
+                </div>
+
+                <!-- File Queue List -->
+                <div class="file-queue-container" id="fileQueue">
+                  <!-- Dynamic File Items go here -->
+                </div>
+              </div>
+
+              <!-- Right Side: Conversion Settings Panel -->
+              <div class="col-lg-5">
+                <div class="settings-card p-4 rounded-4 h-100">
+                  <h5 class="fw-bold mb-4 d-flex align-items-center">
+                    <i class="fa-solid fa-sliders text-primary me-2"></i>Conversion Settings
+                  </h5>
+                  
+                  <!-- Convert To Select -->
+                  <div class="mb-4">
+                    <label for="globalFormat" class="form-label fw-semibold text-secondary">Target Format</label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-transparent border-end-0">
+                        <i class="fa-solid fa-file-image text-primary"></i>
+                      </span>
+                      <select class="form-select border-start-0 ps-0 fw-semibold" id="globalFormat">
+                        <option value="png" selected>PNG (.png)</option>
+                        <option value="jpeg">JPG / JPEG (.jpg)</option>
+                        <option value="webp">WEBP (.webp)</option>
+                        <option value="avif">AVIF (.avif)</option>
+                        <option value="bmp">BMP (.bmp)</option>
+                        <option value="ico">ICO (.ico)</option>
+                        <option value="svg">SVG (.svg)</option>
+                        <option value="gif">GIF (.gif)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Quality Slider (Conditional UI) -->
+                  <div class="mb-4" id="qualityControlContainer">
+                    <div class="d-flex justify-content-between mb-2">
+                      <label for="globalQuality" class="form-label fw-semibold text-secondary mb-0">Quality / Compression</label>
+                      <span class="text-primary fw-bold" id="qualityValue">85%</span>
+                    </div>
+                    <input type="range" class="form-range" id="globalQuality" min="1" max="100" value="85">
+                    <div class="d-flex justify-content-between small text-secondary">
+                      <span>Smaller Size</span>
+                      <span>Best Quality</span>
+                    </div>
+                  </div>
+
+                  <!-- Resize Dimension Toggle -->
+                  <div class="mb-4">
+                    <label class="form-label fw-semibold text-secondary">Resize Option</label>
+                    <div class="row g-2 mb-3">
+                      <div class="col-6">
+                        <input type="radio" class="btn-check" name="resizeOption" id="resizeOriginal" checked>
+                        <label class="btn btn-outline-custom w-100 py-2 fs-7" for="resizeOriginal">Original Size</label>
+                      </div>
+                      <div class="col-6">
+                        <input type="radio" class="btn-check" name="resizeOption" id="resizeCustom">
+                        <label class="btn btn-outline-custom w-100 py-2 fs-7" for="resizeCustom">Custom Dimensions</label>
+                      </div>
+                    </div>
+
+                    <!-- Custom Dimensions Fields -->
+                    <div class="row g-2 d-none" id="customDimensionsInputs">
+                      <div class="col-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" id="customWidth" placeholder="Width" min="1">
+                          <label for="customWidth">Width (px)</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-floating">
+                          <input type="number" class="form-control" id="customHeight" placeholder="Height" min="1">
+                          <label for="customHeight">Height (px)</label>
+                        </div>
+                      </div>
+                      <div class="col-12 mt-2">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="maintainAspectRatio" checked>
+                          <label class="form-check-label small text-secondary" for="maintainAspectRatio">Maintain Aspect Ratio</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Convert Action Button -->
+                  <button class="btn btn-primary btn-lg w-100 py-3 mt-3 shadow-sm-custom" id="convertAllBtn" disabled>
+                    <i class="fa-solid fa-rotate me-2"></i>Convert All Images
+                  </button>
+                  <p class="text-center small text-secondary mt-3 mb-0">
+                    <i class="fa-solid fa-lock me-1"></i>Secure client-side processing
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Conversion History -->
+  <section id="history-section" class="py-5 bg-light-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-9 col-lg-10">
+          <div class="card border-0 shadow-sm p-4 rounded-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="fw-bold mb-0 d-flex align-items-center">
+                <i class="fa-solid fa-clock-rotate-left text-primary me-2"></i>Recent Conversions
+              </h5>
+              <button class="btn btn-sm btn-outline-secondary" id="clearHistoryBtn">
+                <i class="fa-solid fa-circle-xmark me-1"></i>Clear History
+              </button>
+            </div>
+            
+            <div class="table-responsive" id="historyTableContainer">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr class="text-secondary small">
+                    <th scope="col" style="min-width: 200px;">Original Name</th>
+                    <th scope="col">Initial Size</th>
+                    <th scope="col">Target Format</th>
+                    <th scope="col">Converted Size</th>
+                    <th scope="col">Compression Ratio</th>
+                    <th scope="col" class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="historyList">
+                  <!-- History Items inserted dynamically -->
+                  <tr id="emptyHistoryRow">
+                    <td colspan="6" class="text-center py-4 text-secondary">
+                      <i class="fa-regular fa-folder-open fs-2 mb-2 d-block text-muted"></i>
+                      No conversion history available yet.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-5">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2">Our Advantages</span>
+        <h2 class="fw-bold Outfit-font">Why Choose Image Converter Pro</h2>
+        <p class="text-secondary">A faster, safer, and cleaner way to process visual assets.</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 h-100 p-4">
+            <div class="feature-icon mb-3">
+              <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Lightning Fast</h5>
+            <p class="text-secondary small mb-0">Conversions happen locally in milliseconds. No upload queue, no download delay.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 h-100 p-4">
+            <div class="feature-icon mb-3">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h5 class="fw-bold mb-2">100% Privacy</h5>
+            <p class="text-secondary small mb-0">Images are processed inside your browser sandbox. None of your data is sent to a server.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 h-100 p-4">
+            <div class="feature-icon mb-3">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Free & No Limits</h5>
+            <p class="text-secondary small mb-0">No registration, no accounts, and no file quantity caps. Convert as many files as you like.</p>
+          </div>
+        </div>
+        <!-- Feature 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card feature-card border-0 h-100 p-4">
+            <div class="feature-icon mb-3">
+              <i class="fa-solid fa-crop-simple"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Advanced Controls</h5>
+            <p class="text-secondary small mb-0">Customize output quality, scale dimensions, maintain aspect ratio, and preview results side-by-side.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Formats Section -->
+  <section id="formats" class="py-5 bg-light-section">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2">Compatibility</span>
+        <h2 class="fw-bold Outfit-font">Supported Formats</h2>
+        <p class="text-secondary">Fully compatible with all standard and modern image formats.</p>
+      </div>
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-10 g-3 justify-content-center">
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">PNG</span>
+            <span class="d-block small text-secondary">Lossless</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">JPG</span>
+            <span class="d-block small text-secondary">Lossy</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">WEBP</span>
+            <span class="d-block small text-secondary">Modern</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">BMP</span>
+            <span class="d-block small text-secondary">Bitmap</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">GIF</span>
+            <span class="d-block small text-secondary">Graphics</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">TIFF</span>
+            <span class="d-block small text-secondary">Professional</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">SVG</span>
+            <span class="d-block small text-secondary">Vector</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">ICO</span>
+            <span class="d-block small text-secondary">App Icon</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">AVIF</span>
+            <span class="d-block small text-secondary">Next-gen</span>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="format-badge p-3 rounded-4 shadow-sm bg-white">
+            <span class="fw-bold text-dark">RAW</span>
+            <span class="d-block small text-secondary">Camera Raw</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-5">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2">Help Center</span>
+        <h2 class="fw-bold Outfit-font">Frequently Asked Questions</h2>
+        <p class="text-secondary">Have questions? We've got answers.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion accordion-custom" id="faqAccordion">
+            
+            <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  Is my image uploaded to your servers?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">
+                  <strong>Absolutely not.</strong> All conversions are executed locally inside your web browser using HTML5 Canvas, File, and Blob APIs. Your files never leave your computer, ensuring absolute confidentiality and speed.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Which image formats are supported?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">
+                  We support decoding/importing JPG, PNG, WEBP, GIF, BMP, TIFF (via UTIF.js), SVG, ICO, AVIF, and raw camera formats (CR2, NEF, ARW, DNG, etc.). You can export/convert these files into PNG, JPG/JPEG, WEBP, AVIF (subject to browser encoding support), BMP, ICO, SVG, and GIF.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Is the conversion service completely free?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">
+                  Yes, Image Converter Pro is 100% free with no registration, no watermarks, no file size limits, and no subscriptions. Since the processing runs on your own device, there are no hosting computation costs, allowing us to keep it permanently free.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Are images compressed during conversion?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">
+                  Yes, you can control the compression level! When exporting to lossy formats like JPG or WEBP, you can use our Quality Slider to find the perfect balance between file size reduction and image clarity.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-5 mt-5 text-center bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-md-start mb-3 mb-md-0">
+          <a class="navbar-brand d-flex align-items-center" href="#hero">
+            <i class="fa-solid fa-wand-magic-sparkles text-primary me-2"></i>
+            <span class="logo-text text-dark">ImageConverter<span class="text-primary-gradient">Pro</span></span>
+          </a>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <p class="small text-secondary mb-0">&copy; 2026 Image Converter Pro. Built with privacy in mind.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="#" class="text-secondary me-3 text-decoration-none small">Privacy Policy</a>
+          <a href="#" class="text-secondary text-decoration-none small">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Before / After Slider Preview Modal -->
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header border-0 bg-light py-3">
+          <h5 class="modal-title fw-bold" id="previewModalLabel">Before & After Visual Comparison</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="d-flex justify-content-between mb-3 small text-secondary">
+            <div>Original: <span id="beforeFormat" class="badge bg-secondary">PNG</span> (<span id="beforeSize">0 KB</span>)</div>
+            <div>Converted: <span id="afterFormat" class="badge bg-success">WEBP</span> (<span id="afterSize">0 KB</span>)</div>
+          </div>
+          
+          <!-- Visual Comparison Slider Container -->
+          <div class="comparison-container mx-auto" id="comparisonContainer">
+            <img id="beforeImage" src="" alt="Before" class="comparison-image before-image">
+            <div class="comparison-after-wrapper" id="afterImageWrapper">
+              <img id="afterImage" src="" alt="After" class="comparison-image after-image">
+            </div>
+            <!-- Slider Line / Divider -->
+            <div class="comparison-slider" id="comparisonSlider">
+              <div class="comparison-handle">
+                <i class="fa-solid fa-arrows-left-right text-white"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 text-center">
+            <p class="small text-secondary mb-3">Drag the vertical bar in the middle to compare quality details side-by-side.</p>
+            <a href="#" class="btn btn-success px-4" id="modalDownloadBtn">
+              <i class="fa-solid fa-circle-down me-2"></i>Download Converted Image
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <!-- Text dynamically modified -->
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UTIF.js for TIFF Decoding -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/utif.js/3.1.0/UTIF.min.js"></script>
+  
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
